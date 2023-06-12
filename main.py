@@ -2,22 +2,13 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 import os
+from pydantic import BaseModel
+
 
 # Tensorflow
-from tensorflow.keras.models import load_model
-from tensorflow.keras.utils import get_file
-from tensorflow.keras.utils import load_img
-from tensorflow.keras.utils import img_to_array
-import tensorflow_decision_forests
 import tensorflow as tf
-
-from tensorflow import expand_dims
-from tensorflow.nn import softmax
+import tensorflow_decision_forests
 import numpy as np
-from numpy import argmax
-from numpy import max
-from numpy import array
-from json import dumps
 
 app = FastAPI()
 
@@ -40,18 +31,28 @@ async def root():
     return {"message": "Welcome !"}
 
 
-@app.get("/cek-model")
-async def get_net_image_prediction():
+class CropInput(BaseModel):
+    nitrogen: int = 0
+    phosphorous: int = 0
+    potassium: int = 0
+    temperature: int = 0
+    humidity: int = 0
+    ph: int = 0
+    rainfall: int = 0
+
+
+@app.get("/crop-recommendations")
+async def get_crop_recommendations(crop_in: CropInput):
     model = tf.saved_model.load('./model/crop_recommdation')
 
     input_data = {
-        "N": np.array([107]),
-        "P": np.array([35]),
-        "K": np.array([33]),
-        "temperature": np.array([27]),
-        "humidity": np.array([66]),
-        "ph": np.array([7]),
-        "rainfall": np.array([175])
+        "N": np.array([crop_in.nitrogen]),
+        "P": np.array([crop_in.phosphorous]),
+        "K": np.array([crop_in.potassium]),
+        "temperature": np.array([crop_in.temperature]),
+        "humidity": np.array([crop_in.humidity]),
+        "ph": np.array([crop_in.ph]),
+        "rainfall": np.array([crop_in.rainfall])
     }
 
     pred = model.serve(input_data)

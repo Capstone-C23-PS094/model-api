@@ -1,6 +1,9 @@
-fastapi==0.96.0
-numpy==1.24.3
-uvicorn==0.22.0
-image==1.5.33
-tensorflow-macos
-tensorflow-metal
+fastapi
+numpy
+uvicorn
+image
+pydantic
+tensorflow
+tensorflow_decision_forests
+
+
