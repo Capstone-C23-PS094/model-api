@@ -3,7 +3,7 @@ numpy
 uvicorn
 image
 pydantic
-tensorflow
+tensorflow-cpu
 tensorflow_decision_forests
 
 
