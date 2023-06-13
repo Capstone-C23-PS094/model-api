@@ -4,7 +4,6 @@ import uvicorn
 import os
 from pydantic import BaseModel
 
-
 # Tensorflow
 import tensorflow as tf
 import tensorflow_decision_forests
@@ -41,7 +40,7 @@ class CropInput(BaseModel):
     rainfall: int = 0
 
 
-@app.get("/crop-recommendations")
+@app.post("/crop-recommendations")
 async def get_crop_recommendations(crop_in: CropInput):
     model = tf.saved_model.load('./model/crop_recommdation')
 
