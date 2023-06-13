@@ -9,6 +9,8 @@ import tensorflow as tf
 import tensorflow_decision_forests
 import numpy as np
 
+from data import crop_data
+
 app = FastAPI()
 
 origins = ["*"]
@@ -70,9 +72,7 @@ async def get_crop_recommendations(crop_in: CropInput):
     # Mengambil nama kelas yang sesuai dengan indeks
     predicted_class = class_names[predicted_index]
 
-    return {
-        "model-prediction": predicted_class
-    }
+    return crop_data[predicted_class]
 
 
 if __name__ == "__main__":
