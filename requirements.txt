@@ -5,5 +5,5 @@ image
 pydantic
 tensorflow-cpu
 tensorflow_decision_forests
-
+python-multipart
 
