@@ -105,12 +105,13 @@ def get_predict_detail(predictions, classes):
 
 @app.post("/rice-disease-detection")
 async def get_rice_leaf_disease_detection(image: UploadFile):
+    temp_image = image
+    image_link = GCStorage().upload_file(image)
+
     model_dir = "./model/rice_leaf_detection.h5"
     model = load_model(model_dir)
 
-    image_link = GCStorage.upload_file(image)
-
-    contents = image.file.read()
+    contents = temp_image.file.read()
     temp_file = io.BytesIO()
     temp_file.write(contents)
     temp_file.seek(0)
@@ -123,6 +124,7 @@ async def get_rice_leaf_disease_detection(image: UploadFile):
     prediction_probabilities = tf.math.top_k(classes, k=3)
 
     predictions = prediction_probabilities.indices.numpy()
+
     return {
         "predictions": get_predict_detail(predictions, classes.tolist()),
         "image_url": image_link,
