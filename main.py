@@ -3,6 +3,8 @@ from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 import os
 from pydantic import BaseModel
+from fastapi import FastAPI, Form
+from typing import Annotated
 
 # Tensorflow
 import tensorflow as tf
@@ -26,7 +28,6 @@ app.add_middleware(
 )
 
 
-
 @app.get("/")
 async def root():
     return {"message": "Welcome !"}
@@ -43,17 +44,25 @@ class CropInput(BaseModel):
 
 
 @app.post("/crop-recommendations")
-async def get_crop_recommendations(crop_in: CropInput):
+async def get_crop_recommendations(
+        nitrogen: Annotated[float, Form()],
+        phosphorous: Annotated[float, Form()],
+        potassium: Annotated[float, Form()],
+        temperature: Annotated[float, Form()],
+        humidity: Annotated[float, Form()],
+        ph: Annotated[float, Form()],
+        rainfall: Annotated[float, Form()]
+):
     model = tf.saved_model.load('./model/crop_recommdation')
 
     input_data = {
-        "N": np.array([crop_in.nitrogen]),
-        "P": np.array([crop_in.phosphorous]),
-        "K": np.array([crop_in.potassium]),
-        "temperature": np.array([crop_in.temperature]),
-        "humidity": np.array([crop_in.humidity]),
-        "ph": np.array([crop_in.ph]),
-        "rainfall": np.array([crop_in.rainfall])
+        "N": np.array([nitrogen]),
+        "P": np.array([phosphorous]),
+        "K": np.array([potassium]),
+        "temperature": np.array([temperature]),
+        "humidity": np.array([humidity]),
+        "ph": np.array([ph]),
+        "rainfall": np.array([rainfall])
     }
 
     pred = model.serve(input_data)
@@ -67,7 +76,6 @@ async def get_crop_recommendations(crop_in: CropInput):
 
     predicted_label = pred[0]
     predicted_index = np.argmax(predicted_label)
-
 
     # Mengambil nama kelas yang sesuai dengan indeks
     predicted_class = class_names[predicted_index]
