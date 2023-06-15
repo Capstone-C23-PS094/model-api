@@ -94,9 +94,7 @@ async def get_crop_recommendations(
 def get_predict_detail(predictions, classes):
     predicts = []
     class_names = ['bacterial_leaf_blight', 'brown_spot', 'healthy', 'leaf_blast', 'leaf_scald', 'narrow_brown_spot']
-    print(predictions)
     for x in predictions.tolist():
-        print(x)
         predicts.append({
             "disease": leaf_disease[class_names[x]],
             "percentage": classes[x],
@@ -115,8 +113,6 @@ async def get_rice_leaf_disease_detection(image: UploadFile):
     temp_file.write(contents)
     temp_file.seek(0)
     load_image = load_img(temp_file, target_size=(224, 224))
-    temp_file.read()
-    image_link = GCStorage().upload_file(image)
 
     x = img_to_array(load_image)
     x = np.expand_dims(x, axis=0)
@@ -126,7 +122,7 @@ async def get_rice_leaf_disease_detection(image: UploadFile):
     prediction_probabilities = tf.math.top_k(classes, k=3)
 
     predictions = prediction_probabilities.indices.numpy()
-
+    image_link = GCStorage().upload_file(image)
 
     return {
         "predictions": get_predict_detail(predictions, classes.tolist()),
