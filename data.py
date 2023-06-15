@@ -88,3 +88,53 @@ crop_data = {
         'url': 'https://res.cloudinary.com/daktccmqn/image/upload/v1686641343/coffee_y3s71a.jpg',
     }
 }
+
+leaf_disease = {
+    'bacterial_leaf_blight': {
+        'name': 'Bacterial Leaf Blight',
+        'solutions': """ 1. Berikan nutrisi yang seimbang kepada tanaman Anda, terutama nitrogen. Memberikan jumlah nutrisi tanaman yang tepat akan membantu tanaman Anda tumbuh dengan baik.
+2. Pastikan lahan pertanian, terutama pada tanaman yang direndam air secara konvensional, memiliki drainase yang baik. Ini akan membantu menjaga kelembapan yang tepat bagi tanaman.
+3. Jaga kebersihan lahan pertanian Anda. Singkirkan gulma dan olah sisa-sisa tanaman seperti batang padi, jerami, padi ratoons, dan tanaman sukarela yang dapat menjadi tempat hidup bagi bakteri.
+4. Biarkan lahan pertanian yang tidak digunakan untuk beberapa waktu kering agar dapat menekan agen penyakit dalam tanah dan sisa tanaman.
+                     """
+    },
+    'brown_spot': {
+        'name': 'Brown Spot',
+        'solutions': """1. Pantau kandungan nutrisi tanah secara teratur.
+2. Gunakan pupuk yang diperlukan.
+3. Untuk tanah yang rendah kandungan silikonnya, aplikasikan slag kalsium silikat sebelum tanam."""
+
+    },
+    'healthy': {
+        'name': "Padi anda Sehat",
+        'solutions': "-"
+    },
+    'leaf_blast': {
+        'name': 'Leaf Blast',
+        'solutions': """1. Atur waktu tanam dengan baik. Sebarkan biji-bijian sedini mungkin setelah dimulainya musim hujan.
+2. Bagi pemberian pupuk nitrogen menjadi dua atau lebih tahap. Penggunaan pupuk yang berlebihan dapat meningkatkan intensitas penyakit blast.
+3. Lakukan penyiraman lahan sesering mungkin."""
+    },
+    'leaf_scald': {
+        'name': 'Leaf Scald',
+        'solutions': """1. Gunakan varietas yang tahan terhadap penyakit.
+2. Hubungi kantor pertanian lokal Anda untuk mendapatkan daftar varietas yang tersedia terbaru. 
+3. Hindari penggunaan pupuk yang berlebihan. Aplikasikan Nitrogen secara bertahap. 
+4. Gunakan benomil, karbendazim, quitozene, dan thiophanate-methyl untuk perlakuan biji.
+5. Di lapangan, penyemprotan benomil, fentin asetat, edifenfos, dan validamisin secara signifikan mengurangi kejadian penyakit scald daun. Aplikasi daun captafol, mankozeb, dan tembaga oksiklorida juga mengurangi kejadian dan keparahan penyakit jamur. 
+        
+Untuk mencegah kelangsungan hidup patogen antara musim tanam:
+1. Singkirkan gulma.
+2. Lapisi sisa-sisa batang padi.
+3. Hilangkan tanaman padi yang terinfeksi."""
+
+    },
+    'narrow_brown_spot': {
+        'name': 'Narrow Brown Spot',
+        'solutions': """1. Gunakan varietas yang tahan terhadap penyakit. Hubungi kantor pertanian lokal Anda untuk mendapatkan daftar varietas yang tersedia terbaru.
+2. Jaga kebersihan lahan pertanian.
+3. Singkirkan gulma dan padi liar di lahan dan area sekitarnya untuk menghilangkan inang alternatif yang memungkinkan jamur bertahan hidup dan menginfeksi tanaman padi baru.
+4. Gunakan nutrisi yang seimbang; pastikan penggunaan kalium yang memadai.
+5. Jika penyakit bercak coklat sempit mengancam lahan, semprotkan propikonazol pada tahap pembentukan malai hingga kelompok bunga."""
+    }
+}
